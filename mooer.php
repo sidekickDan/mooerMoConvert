@@ -147,7 +147,7 @@ if (isset($_POST["submit"])) {
 					<button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#importPluginModal">
 							<span class="d-flex align-items-center">
 								<i class="bi-person-circle me-2"></i>
-								<span class="small">How to Import</span>
+								<span class="small">How to Import GE150 Presets &amp; IRs</span>
 							</span>
 					</button>
                 </div>
@@ -199,23 +199,31 @@ if (isset($_POST["submit"])) {
             <div class="modal-dialog modal-dialog-centered" style="max-width:99% !important;margin:20px;">
                 <div class="modal-content">
                     <div class="modal-header bg-gradient-primary-to-secondary p-4">
-                        <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">How to Import Plugins to the GE150</h5>
+                        <h5 class="modal-title font-alt text-white" id="feedbackModalLabel">How to Import Presets to the GE150</h5>
                         <button class="btn-close btn-close-white" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body border-0 p-4">
        
-						<div class="">
-						<div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
-							<p style="text-align:center;">
-							<a class="btn btn-dark" href="http://uxredesigner.com/assets/img/resume_danny.pdf" target="_blank">Download My Resume</a> 
-							<a href="https://github.com/sidekickDan" target="_blank"><img src="assets/img/icon_github.png" /></a> 
-							<a href="https://www.linkedin.com/in/dannyleary" target="_blank"><img src="assets/img/icon_linkedin.png" /></a>
-							</p>
-							<img src="assets/img/resume_complete.jpg" />
-							
-							
-						</div>
-						
+						<div class="container-fluid">
+							<div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+								<h2>How to Import Presets to the GE150</h2>
+								<h4>There are just a few easy steps to import your presets into the GE150.</h4>
+								<ul style="margin-left:20px;">
+									<li>Plug in your GE150 to power.</li>
+									<li>Plug in your GE150 to your laptop via usb.</li>
+									<li>Open the Mooer Studio for GE150 software on your computer.</li>
+									<li>Find the COMPUTER Panel and right-click anywhere in the empty area.</li>
+									<li>Select "Add" and navigate to the .mo preset file and select it. (The software will automatically create a copy in the software's preset folder.)</li>
+									<li>If the .mo preset file is compatible with your GE150, you should see the name of the preset now appear in the COMPUTER Panel.</li>
+									<li>To import the preset to your device, just drag and drop the new preset over the top of one of the existing presets you see in the DEVICE Panel.</li>
+									<li>Confirm your choice. The imported preset now should overwrite the factory preset used for that slot.</li>
+								</ul>
+								<br />
+								<h2>How to Import CAB IR Files to the GE150</h2>
+								<p>If you're looking to import a CAB IR file, this is slightly different but easier. (1) Select the CAB icon at the bottom of the interface. (2) Scroll to the bottom of the list found in the CAB Panel. You'll see some empty slots. (3) Then click the + icon to navigate to the IR file and import it.</p>
+								<br />
+								<img src="assets/img/UI_GE150.jpg" style="width:85%;height:auto;"/>
+							</div>
 						</div>
 		
 
