@@ -1,6 +1,48 @@
 <?php
 
+// (B) ACCEPTED FILE TYPES & SIZE
+$accept = ["mo"]; // ALL LOWER CASE
+$maxSize = 10000; // 10 KB
+$upExt = strtolower(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION));
+
 if (isset($_POST["submit"])) {
+	// ERROR - NO FILE UPLOADED
+	if (!file_exists($_FILES["file"]['tmp_name']) ) { 
+		echo "<script>
+						function errorMessageOne(){
+						document.getElementById('formError').innerHTML +='No file selected.';
+						}
+						window.addEventListener('load', function() {
+							errorMessageOne();
+						})
+						
+			 </script>"; 
+		}
+	// CHECK FILE EXTENSION
+	elseif (!in_array($upExt, $accept)){
+		echo "<script>
+						function errorMessageOne(){
+						document.getElementById('formError').innerHTML +='Wrong file type.';
+						}
+						window.addEventListener('load', function() {
+							errorMessageOne();
+						})
+						
+			 </script>"; 
+	}
+	// CHECK FILE SIZE
+	elseif ($_FILES["file"]["size"] > $maxSize){
+		echo "<script>
+						function errorMessageOne(){
+						document.getElementById('formError').innerHTML +='File too big.';
+						}
+						window.addEventListener('load', function() {
+							errorMessageOne();
+						})
+						
+			 </script>"; 
+	}
+	else {
     $content = file_get_contents($_FILES["file"]["tmp_name"]);
     $array = unpack("C*", $content);
 //print_r($array);
@@ -88,6 +130,7 @@ if (isset($_POST["submit"])) {
         'device_version' => 'V1.1.0',
     ];
 
+		 
     header('Content-disposition: attachment; filename=' . $presetName . '.mo');
     header('Content-Type: application/json');
     echo json_encode([
@@ -102,15 +145,15 @@ if (isset($_POST["submit"])) {
         ],
         'fileInfo' => $fileInfo,
     ]);
+		
     exit();
 }
-
+}
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
-
 		<meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -163,12 +206,13 @@ if (isset($_POST["submit"])) {
                         <p class="lead textWhite  textLineHeight">Convert GE200 presets to make them usable with the GE150. Just select a GE200 preset .mo file and hit the convert button!</p>
 						<br />
 						<div class="container-fluid">
+							<div id="formError"></div>
 						  <form class="form-inline row g-3 d-flex justify-content-center" action="" method="post" enctype="multipart/form-data">
 							<div class="col-auto">
 								<input class="form-control" type="file" name="file" id="formFile">
 							</div>
 							<div class="col-auto">						
-								<button type="submit" value="Submit" name="submit" class="btn btn-warning m-2">Convert</button>
+								<button type="submit" value="Submit" name="submit" class="btn btn-warning m-2" onclick="clearError()">Convert</button>
 							</div>
 						  </form>
 						</div>
@@ -232,8 +276,6 @@ if (isset($_POST["submit"])) {
             </div>
         </div>
 
-
-
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -241,6 +283,12 @@ if (isset($_POST["submit"])) {
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 		<!-- Core theme JS-->
 		<script src="js/scripts.js"></script>
-		
+		<!-- Clear any error messages on clicking submit button again -->	
+		<script>
+			function clearError(){
+				document.getElementById('formError').innerHTML ='';
+			}
+		 </script>
+
 </body>
 </html>
