@@ -1,6 +1,6 @@
 <?php
 
-// (B) ACCEPTED FILE TYPES & SIZE
+// ACCEPTED FILE TYPES & SIZE
 $accept = ["mo"]; // ALL LOWER CASE
 $maxSize = 10000; // 10 KB
 $upExt = strtolower(pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION));
